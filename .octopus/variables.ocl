@@ -7,3 +7,21 @@ variable "Project.AWS.Account" {
 
     value "aws-account" {}
 }
+
+variable "Project.Environment.ShortHand" {
+    value "dev" {
+        environment = ["development"]
+    }
+
+    value "test" {
+        environment = ["test"]
+    }
+
+    value "stag" {
+        environment = ["staging"]
+    }
+
+    value "prod" {
+        environment = ["production"]
+    }
+}
