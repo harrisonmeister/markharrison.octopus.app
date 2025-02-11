@@ -25,3 +25,7 @@ variable "Project.Environment.ShortHand" {
         environment = ["production"]
     }
 }
+
+variable "Project.AWS.StackName" {
+    value "riskpredictor-#{Octopus.Space.Name | Replace \" \"}-#{Project.Environment.ShortHand | ToLower}-markh" {}
+}
