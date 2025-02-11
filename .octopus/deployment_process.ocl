@@ -23,6 +23,7 @@ step "manual-intervention-required" {
             Octopus.Action.Manual.BlockConcurrentDeployments = "False"
             Octopus.Action.Manual.Instructions = "Approve this deployment?"
             Octopus.Action.Manual.ResponsibleTeamIds = "space-managers"
+            Octopus.Action.RunOnServer = "false"
         }
     }
 }
@@ -39,8 +40,8 @@ step "deploy-cf-template" {
             Octopus.Action.ProcessTemplate.Reference.VersioningOption = "SpecifiedVersion"
             Octopus.Action.RunOnServer = "false"
             "Octopus.Step[Deploy AWS CloudFormation template].Action[Deploy AWS CloudFormation template].Container" = "{\"Image\":\"octopusdeploy/worker-tools:6.4.0-ubuntu.22.04\",\"FeedId\":\"Feeds-1357\",\"GitUrl\":null,\"Dockerfile\":null}"
-            "Octopus.Step[Deploy AWS CloudFormation template].Action[Deploy AWS CloudFormation template].Properties[Octopus.Action.Aws.CloudFormationTemplateParameters]" = "[{\"ParameterKey\":\"EnvType\",\"ParameterValue\":\"#{Octopus.Environment.Name | ToLower}\"},{\"ParameterKey\":\"ImageAmi\",\"ParameterValue\":\"\"}]"
-            "Octopus.Step[Deploy AWS CloudFormation template].Action[Deploy AWS CloudFormation template].Properties[Octopus.Action.Aws.CloudFormationTemplateParametersRaw]" = "[{\"ParameterKey\":\"EnvType\",\"ParameterValue\":\"#{Octopus.Environment.Name | ToLower}\"},{\"ParameterKey\":\"ImageAmi\",\"ParameterValue\":null}]"
+            "Octopus.Step[Deploy AWS CloudFormation template].Action[Deploy AWS CloudFormation template].Properties[Octopus.Action.Aws.CloudFormationTemplateParameters]" = "[{\"ParameterKey\":\"EnvType\",\"ParameterValue\":\"#{Octopus.Environment.Name | ToLower}\"},{\"ParameterKey\":\"ImageAmi\",\"ParameterValue\":\"#{Project.AMI.ImageID}\"}]"
+            "Octopus.Step[Deploy AWS CloudFormation template].Action[Deploy AWS CloudFormation template].Properties[Octopus.Action.Aws.CloudFormationTemplateParametersRaw]" = "[{\"ParameterKey\":\"EnvType\",\"ParameterValue\":\"#{Octopus.Environment.Name | ToLower}\"},{\"ParameterKey\":\"ImageAmi\",\"ParameterValue\":\"#{Project.AMI.ImageID}\"}]"
             "Octopus.Step[Deploy AWS CloudFormation template].Action[Deploy AWS CloudFormation template].Properties[Octopus.Action.AwsAccount.Variable]" = "Project.AWS.Account"
             "Octopus.Step[Deploy AWS CloudFormation template].Action[Deploy AWS CloudFormation template].WorkerPoolId" = "WorkerPools-431"
             PH.CF.Region = "#{Tenant.AWS.Region}"
