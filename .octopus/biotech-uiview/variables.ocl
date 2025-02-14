@@ -5,5 +5,5 @@ variable "AWS.Account" {
 }
 
 variable "OctopusPrintEvaluatedVariables" {
-    value "True" {}
+    value "False" {}
 }
