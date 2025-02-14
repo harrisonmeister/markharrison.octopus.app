@@ -3,3 +3,7 @@ variable "AWS.Account" {
 
     value "aws-account" {}
 }
+
+variable "OctopusPrintEvaluatedVariables" {
+    value "True" {}
+}
