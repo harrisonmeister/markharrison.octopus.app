@@ -7,3 +7,7 @@ variable "AWS.Account" {
 variable "OctopusPrintEvaluatedVariables" {
     value "False" {}
 }
+
+variable "Project.AWS.Region" {
+    value "us-east-2" {}
+}
