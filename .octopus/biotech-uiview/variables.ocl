@@ -11,3 +11,24 @@ variable "OctopusPrintEvaluatedVariables" {
 variable "Project.AWS.Region" {
     value "us-east-2" {}
 }
+
+variable "Project.Environment.ShortHand" {
+    value "dev" {
+        environment = ["development"]
+    }
+
+    value "test" {
+        description = ""
+        environment = ["test"]
+    }
+
+    value "stag" {
+        description = ""
+        environment = ["staging"]
+    }
+
+    value "prod" {
+        description = ""
+        environment = ["production"]
+    }
+}
