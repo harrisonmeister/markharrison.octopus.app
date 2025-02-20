@@ -34,7 +34,7 @@ variable "Project.Environment.ShortHand" {
 }
 
 variable "Octopus.ServiceNow.ChangeRequest.Number" {
-    value {
+    value "CHG0030007" {
         environment = ["production"]
         process = ["deployment-process"]
 
