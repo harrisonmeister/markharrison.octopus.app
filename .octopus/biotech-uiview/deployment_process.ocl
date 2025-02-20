@@ -20,6 +20,20 @@ step "notify-deployment-start" {
     }
 }
 
+step "deployment-approval" {
+    name = "Deployment Approval"
+
+    action {
+        action_type = "Octopus.Manual"
+        environments = ["test"]
+        properties = {
+            Octopus.Action.Manual.BlockConcurrentDeployments = "False"
+            Octopus.Action.Manual.Instructions = "Is this deployment to #{Octopus.Environment.Name} approved to be deployed?"
+            Octopus.Action.Manual.ResponsibleTeamIds = "space-managers"
+        }
+    }
+}
+
 step "notify-deployment-status" {
     condition = "Always"
     name = "Notify deployment status"
