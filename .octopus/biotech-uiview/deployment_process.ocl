@@ -35,6 +35,35 @@ step "deployment-approval" {
     }
 }
 
+step "deploy-biotech-web" {
+    name = "Deploy biotech-web"
+    properties = {
+        Octopus.Action.TargetRoles = "biotech-web"
+    }
+
+    action {
+        action_type = "Octopus.TentaclePackage"
+        properties = {
+            Octopus.Action.EnabledFeatures = ",Octopus.Features.ConfigurationTransforms,Octopus.Features.ConfigurationVariables"
+            Octopus.Action.Package.AutomaticallyRunConfigurationTransformationFiles = "False"
+            Octopus.Action.Package.AutomaticallyUpdateAppSettingsAndConnectionStrings = "False"
+            Octopus.Action.Package.DownloadOnTentacle = "False"
+            Octopus.Action.Package.FeedId = "octopus-server-built-in"
+            Octopus.Action.Package.PackageId = "biotech-web"
+        }
+        worker_pool_variable = ""
+
+        packages {
+            acquisition_location = "Server"
+            feed = "octopus-server-built-in"
+            package_id = "biotech-web"
+            properties = {
+                SelectionMode = "immediate"
+            }
+        }
+    }
+}
+
 step "notify-deployment-status" {
     condition = "Always"
     name = "Notify deployment status"
