@@ -49,14 +49,15 @@ step "deploy-biotech-web" {
             Octopus.Action.Package.AutomaticallyUpdateAppSettingsAndConnectionStrings = "False"
             Octopus.Action.Package.DownloadOnTentacle = "False"
             Octopus.Action.Package.FeedId = "octopus-server-built-in"
-            Octopus.Action.Package.PackageId = "biotech-web"
+            Octopus.Action.Package.PackageId = "biotech-webapp"
+            Octopus.Action.RunOnServer = "false"
         }
         worker_pool_variable = ""
 
         packages {
             acquisition_location = "Server"
             feed = "octopus-server-built-in"
-            package_id = "biotech-web"
+            package_id = "biotech-webapp"
             properties = {
                 SelectionMode = "immediate"
             }
