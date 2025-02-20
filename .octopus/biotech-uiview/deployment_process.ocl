@@ -13,7 +13,7 @@ step "notify-deployment-start" {
             ssn_HookUrl = "#{Notification.Slack.Webhook}"
             ssn_IconUrl = "https://octopus.com/content/resources/favicon.png"
             ssn_Message = "#{Notification.Slack.Status.Message}"
-            ssn_Title = "#{Project.Notification.DeploymentStartedTitle}"
+            ssn_Title = "#{Notification.Slack.Status.DeploymentStarted.Title}"
             ssn_Username = "Octopus Deploy"
         }
         worker_pool = "hosted-ubuntu"
@@ -30,6 +30,7 @@ step "deployment-approval" {
             Octopus.Action.Manual.BlockConcurrentDeployments = "False"
             Octopus.Action.Manual.Instructions = "Is this deployment to #{Octopus.Environment.Name} approved to be deployed?"
             Octopus.Action.Manual.ResponsibleTeamIds = "space-managers"
+            Octopus.Action.RunOnServer = "false"
         }
     }
 }
