@@ -1,0 +1,43 @@
+step "notify-deployment-start" {
+    name = "Notify deployment start"
+
+    action {
+        is_required = true
+        properties = {
+            Octopus.Action.AutoRetry.MaximumCount = "3"
+            Octopus.Action.AutoRetry.MinimumBackoff = "15"
+            Octopus.Action.Template.Id = "ActionTemplates-461"
+            Octopus.Action.Template.Version = "15"
+            ssn_Channel = "#{Notification.Slack.Channel}"
+            ssn_Color = "good"
+            ssn_HookUrl = "#{Notification.Slack.Webhook}"
+            ssn_IconUrl = "https://octopus.com/content/resources/favicon.png"
+            ssn_Message = "#{Notification.Slack.Status.Message}"
+            ssn_Title = "#{Project.Notification.DeploymentStartedTitle}"
+            ssn_Username = "Octopus Deploy"
+        }
+        worker_pool = "hosted-ubuntu"
+    }
+}
+
+step "notify-deployment-status" {
+    condition = "Always"
+    name = "Notify deployment status"
+
+    action {
+        properties = {
+            Octopus.Action.AutoRetry.MaximumCount = "3"
+            Octopus.Action.AutoRetry.MinimumBackoff = "15"
+            Octopus.Action.Template.Id = "ActionTemplates-461"
+            Octopus.Action.Template.Version = "15"
+            ssn_Channel = "#{Notification.Slack.Channel}"
+            ssn_Color = "#{Notification.Slack.Status.Color}"
+            ssn_HookUrl = "#{Notification.Slack.Webhook}"
+            ssn_IconUrl = "https://octopus.com/content/resources/favicon.png"
+            ssn_Message = "#{Notification.Slack.Status.Message}"
+            ssn_Title = "#{Notification.Slack.Status.Deployment.Title}"
+            ssn_Username = "Octopus Deploy"
+        }
+        worker_pool = "hosted-ubuntu"
+    }
+}
