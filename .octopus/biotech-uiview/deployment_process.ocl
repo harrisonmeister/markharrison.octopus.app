@@ -31,7 +31,7 @@ step "notify-deployment-status" {
             Octopus.Action.Template.Id = "ActionTemplates-461"
             Octopus.Action.Template.Version = "15"
             ssn_Channel = "#{Notification.Slack.Channel}"
-            ssn_Color = "#{Notification.Slack.Status.Color}"
+            ssn_Color = "#{Notification.Slack.Color}"
             ssn_HookUrl = "#{Notification.Slack.Webhook}"
             ssn_IconUrl = "https://octopus.com/content/resources/favicon.png"
             ssn_Message = "#{Notification.Slack.Status.Message}"
