@@ -34,9 +34,9 @@ step "deploy-cf-template" {
     action {
         action_type = "Octopus.ProcessTemplate"
         properties = {
-            Octopus.Action.ProcessTemplate.Reference.Commit = "2cd7b9d7acb6fa54fd445b07d59db2ce5094f1cd"
+            Octopus.Action.ProcessTemplate.Reference.Commit = "da34efe1907365abbaefeb3df5cbe0b908a9520a"
             Octopus.Action.ProcessTemplate.Reference.Slug = "base-ec2-cloudformation-resources"
-            Octopus.Action.ProcessTemplate.Reference.Version = "0.0.2"
+            Octopus.Action.ProcessTemplate.Reference.Version = "2.1.0"
             Octopus.Action.ProcessTemplate.Reference.VersioningOption = "SpecifiedVersion"
             Octopus.Action.RunOnServer = "false"
             "Octopus.Step[Deploy AWS CloudFormation template].Action[Deploy AWS CloudFormation template].Container" = "{\"Image\":\"octopusdeploy/worker-tools:6.4.0-ubuntu.22.04\",\"FeedId\":\"Feeds-1357\",\"GitUrl\":null,\"Dockerfile\":null}"
