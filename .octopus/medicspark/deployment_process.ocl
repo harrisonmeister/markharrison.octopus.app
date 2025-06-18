@@ -45,8 +45,10 @@ step "deploy-cf-template" {
             "Octopus.Step[Deploy AWS CloudFormation template].Action[Deploy AWS CloudFormation template].Properties[Octopus.Action.Aws.CloudFormationTemplateParametersRaw]" = "[{\"ParameterKey\":\"EnvType\",\"ParameterValue\":\"#{Octopus.Environment.Name | ToLower}\"},{\"ParameterKey\":\"ImageAmi\",\"ParameterValue\":\"#{Project.AMI.ImageID}\"}]"
             "Octopus.Step[Deploy AWS CloudFormation template].Action[Deploy AWS CloudFormation template].Properties[Octopus.Action.AwsAccount.Variable]" = "Project.AWS.Account"
             "Octopus.Step[Deploy AWS CloudFormation template].Action[Deploy AWS CloudFormation template].WorkerPoolId" = "WorkerPools-431"
+            PH.CF.ContainerFeed = "Feeds-1357"
             PH.CF.Region = "#{Tenant.AWS.Region}"
             PH.CF.StackName = "#{Project.AWS.StackName}"
+            PH.CF.WorkerPool = "Project.WorkerPool"
         }
         worker_pool_variable = ""
     }
