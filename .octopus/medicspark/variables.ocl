@@ -29,3 +29,9 @@ variable "Project.Environment.ShortHand" {
 variable "Project.AWS.StackName" {
     value "#{Octopus.Space.Name | ToLower | Replace \" \"}-riskpredictor-#{Project.Environment.ShortHand | ToLower}-markh" {}
 }
+
+variable "Project.WorkerPool" {
+    type = "WorkerPool"
+
+    value "hosted-ubuntu" {}
+}
