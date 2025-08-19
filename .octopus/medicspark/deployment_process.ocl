@@ -14,9 +14,9 @@ step "deployment-start" {
 }
 
 step "manual-intervention-required" {
-    name = "Approve deployment"
+    name = "Production Deployment Approval"
 
-    action "approve-deployment" {
+    action "production-deployment-approval" {
         action_type = "Octopus.Manual"
         environments = ["production"]
         properties = {
