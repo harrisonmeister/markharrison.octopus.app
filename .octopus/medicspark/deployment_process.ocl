@@ -37,7 +37,7 @@ step "manual-intervention-required" {
 process_template "deploy-cf-template" {
     name = "Deploy CF Template"
     process_template_slug = "base-ec2-cloudformation-resources"
-    version_mask = "2.X"
+    version_mask = "3.X"
 
     parameter "PH.CF.Region" {
         value = "#{Tenant.AWS.Region}"
