@@ -46,6 +46,6 @@ process_template "deploy-cf-template" {
     }
 
     parameter "PH.CF.WorkerPool" {
-        value = "Project.WorkerPool"
+        value = "#{Project.WorkerPool}"
     }
 }
