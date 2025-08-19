@@ -29,7 +29,6 @@ step "deployment-approval" {
         properties = {
             Octopus.Action.Manual.BlockConcurrentDeployments = "False"
             Octopus.Action.Manual.Instructions = "Is this deployment to #{Octopus.Environment.Name} approved to be deployed?"
-            Octopus.Action.Manual.ResponsibleTeamIds = "space-managers"
             Octopus.Action.RunOnServer = "false"
         }
     }
