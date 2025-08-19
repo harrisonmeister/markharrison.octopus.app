@@ -2,7 +2,6 @@ step "notify-deployment-start" {
     name = "Notify deployment start"
 
     action {
-        is_required = true
         properties = {
             Octopus.Action.AutoRetry.MaximumCount = "3"
             Octopus.Action.AutoRetry.MinimumBackoff = "15"
@@ -29,6 +28,7 @@ step "deployment-approval" {
         properties = {
             Octopus.Action.Manual.BlockConcurrentDeployments = "False"
             Octopus.Action.Manual.Instructions = "Is this deployment to #{Octopus.Environment.Name} approved to be deployed?"
+            Octopus.Action.Manual.ResponsibleTeamIds = "space-managers"
             Octopus.Action.RunOnServer = "false"
         }
     }
