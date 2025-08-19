@@ -18,7 +18,7 @@ step "manual-intervention-required" {
 
     action "approve-deployment" {
         action_type = "Octopus.Manual"
-        environments = ["test"]
+        environments = ["production"]
         properties = {
             Octopus.Action.Manual.BlockConcurrentDeployments = "False"
             Octopus.Action.Manual.Instructions = "Approve this deployment?"
