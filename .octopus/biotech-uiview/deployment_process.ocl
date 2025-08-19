@@ -86,3 +86,25 @@ step "notify-deployment-status" {
         worker_pool = "hosted-ubuntu"
     }
 }
+
+process_template "run-a-process-template" {
+    name = "Run a Process Template"
+    process_template_slug = "base-ec2-cloudformation-resources"
+    version_mask = "2.X"
+
+    parameter "PH.CF.Region" {
+        value = "123"
+    }
+
+    parameter "PH.CF.StackName" {
+        value = "123"
+    }
+
+    parameter "PH.CF.ContainerFeed" {
+        value = "Feeds-1357"
+    }
+
+    parameter "PH.CF.WorkerPool" {
+        value = "WorkerPools-430"
+    }
+}
