@@ -58,6 +58,10 @@ process_template "deploy-aws-resources" {
     parameter "PH.CF.AWSAccount" {
         value = "Project.AWS.Account"
     }
+
+    parameter "PH.CF.AMI.ImageId" {
+        value = "#{Project.AMI.ImageID}"
+    }
 }
 
 step "notify-deployment-status" {
