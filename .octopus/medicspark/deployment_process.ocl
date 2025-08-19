@@ -22,7 +22,6 @@ step "manual-intervention-required" {
         properties = {
             Octopus.Action.Manual.BlockConcurrentDeployments = "False"
             Octopus.Action.Manual.Instructions = "Approve this deployment?"
-            Octopus.Action.Manual.ResponsibleTeamIds = "space-managers"
             Octopus.Action.RunOnServer = "false"
         }
     }
