@@ -28,28 +28,24 @@ step "manual-intervention-required" {
     }
 }
 
-step "deploy-cf-template" {
+process_template "deploy-cf-template" {
     name = "Deploy CF Template"
+    process_template_slug = "base-ec2-cloudformation-resources"
+    version_mask = "2.X"
 
-    action {
-        action_type = "Octopus.ProcessTemplate"
-        properties = {
-            Octopus.Action.ProcessTemplate.Reference.Commit = "da34efe1907365abbaefeb3df5cbe0b908a9520a"
-            Octopus.Action.ProcessTemplate.Reference.Slug = "base-ec2-cloudformation-resources"
-            Octopus.Action.ProcessTemplate.Reference.Version = "2.1.0"
-            Octopus.Action.ProcessTemplate.Reference.VersioningOption = "AlwaysUseLatest"
-            Octopus.Action.ProcessTemplate.Reference.VersionMask = "X"
-            Octopus.Action.RunOnServer = "false"
-            "Octopus.Step[Deploy AWS CloudFormation template].Action[Deploy AWS CloudFormation template].Container" = "{\"Image\":\"octopusdeploy/worker-tools:6.4.0-ubuntu.22.04\",\"FeedId\":\"Feeds-1357\",\"GitUrl\":null,\"Dockerfile\":null}"
-            "Octopus.Step[Deploy AWS CloudFormation template].Action[Deploy AWS CloudFormation template].Properties[Octopus.Action.Aws.CloudFormationTemplateParameters]" = "[{\"ParameterKey\":\"EnvType\",\"ParameterValue\":\"#{Octopus.Environment.Name | ToLower}\"},{\"ParameterKey\":\"ImageAmi\",\"ParameterValue\":\"#{Project.AMI.ImageID}\"}]"
-            "Octopus.Step[Deploy AWS CloudFormation template].Action[Deploy AWS CloudFormation template].Properties[Octopus.Action.Aws.CloudFormationTemplateParametersRaw]" = "[{\"ParameterKey\":\"EnvType\",\"ParameterValue\":\"#{Octopus.Environment.Name | ToLower}\"},{\"ParameterKey\":\"ImageAmi\",\"ParameterValue\":\"#{Project.AMI.ImageID}\"}]"
-            "Octopus.Step[Deploy AWS CloudFormation template].Action[Deploy AWS CloudFormation template].Properties[Octopus.Action.AwsAccount.Variable]" = "Project.AWS.Account"
-            "Octopus.Step[Deploy AWS CloudFormation template].Action[Deploy AWS CloudFormation template].WorkerPoolId" = "WorkerPools-431"
-            PH.CF.ContainerFeed = "Feeds-1357"
-            PH.CF.Region = "#{Tenant.AWS.Region}"
-            PH.CF.StackName = "#{Project.AWS.StackName}"
-            PH.CF.WorkerPool = "Project.WorkerPool"
-        }
-        worker_pool_variable = ""
+    parameter "PH.CF.Region" {
+        value = "#{Tenant.AWS.Region}"
+    }
+
+    parameter "PH.CF.StackName" {
+        value = "#{Project.AWS.StackName}"
+    }
+
+    parameter "PH.CF.ContainerFeed" {
+        value = "Feeds-1357"
+    }
+
+    parameter "PH.CF.WorkerPool" {
+        value = "Project.WorkerPool"
     }
 }
