@@ -24,7 +24,7 @@ step "deployment-approval" {
 
     action "deployment-approval-in-staging" {
         action_type = "Octopus.Manual"
-        environments = ["production"]
+        environments = ["staging"]
         properties = {
             Octopus.Action.Manual.BlockConcurrentDeployments = "False"
             Octopus.Action.Manual.Instructions = "Is this deployment to #{Octopus.Environment.Name} approved to be deployed?"
