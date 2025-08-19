@@ -34,8 +34,8 @@ step "manual-intervention-required" {
     }
 }
 
-process_template "deploy-cf-template" {
-    name = "Deploy CF Template"
+process_template "deploy-aws-resources" {
+    name = "Deploy AWS resources"
     process_template_slug = "base-ec2-cloudformation-resources"
     version_mask = "3.X"
 
