@@ -21,11 +21,11 @@ step "notify-deployment-start" {
 }
 
 step "deployment-approval" {
-    name = "Deployment Approval"
+    name = "Approve Deployment"
 
-    action {
+    action "approve-deployment" {
         action_type = "Octopus.Manual"
-        environments = ["test"]
+        environments = ["production"]
         properties = {
             Octopus.Action.Manual.BlockConcurrentDeployments = "False"
             Octopus.Action.Manual.Instructions = "Is this deployment to #{Octopus.Environment.Name} approved to be deployed?"
