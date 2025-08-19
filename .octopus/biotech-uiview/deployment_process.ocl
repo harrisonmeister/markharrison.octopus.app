@@ -21,9 +21,9 @@ step "notify-deployment-start" {
 }
 
 step "deployment-approval" {
-    name = "Approve Deployment"
+    name = "Production Deployment Approval"
 
-    action "approve-deployment" {
+    action "production-deployment-approval" {
         action_type = "Octopus.Manual"
         environments = ["production"]
         properties = {
