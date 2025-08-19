@@ -29,3 +29,9 @@ variable "Project.WorkerPool" {
 
     value "hosted-ubuntu" {}
 }
+
+variable "Project.AWS.Account" {
+    type = "AmazonWebServicesAccount"
+
+    value "aws-account" {}
+}
