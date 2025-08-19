@@ -2,12 +2,6 @@ variable "Project.AMI.ImageID" {
     value "#{Tenant.AMI.ImageID}" {}
 }
 
-variable "Project.AWS.Account" {
-    type = "AmazonWebServicesAccount"
-
-    value "aws-account" {}
-}
-
 variable "Project.Environment.ShortHand" {
     value "dev" {
         environment = ["development"]
