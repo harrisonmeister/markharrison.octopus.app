@@ -54,6 +54,10 @@ process_template "deploy-aws-resources" {
     parameter "PH.CF.WorkerPool" {
         value = "#{Project.WorkerPool}"
     }
+
+    parameter "PH.CF.AWSAccount" {
+        value = "Project.AWS.Account"
+    }
 }
 
 step "notify-deployment-status" {
