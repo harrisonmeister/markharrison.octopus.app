@@ -33,8 +33,14 @@ variable "Project.Environment.ShortHand" {
     }
 }
 
+variable "Project.WorkerPool" {
+    type = "WorkerPool"
+
+    value "hosted-ubuntu" {}
+}
+
 variable "Octopus.ServiceNow.ChangeRequest.Number" {
-    value "CHG0030008" {
+    value "" {
         environment = ["production"]
         process = ["deployment-process"]
 
@@ -46,10 +52,4 @@ variable "Octopus.ServiceNow.ChangeRequest.Number" {
             label = "SNOW Change Request Number"
         }
     }
-}
-
-variable "Project.WorkerPool" {
-    type = "WorkerPool"
-
-    value "hosted-ubuntu" {}
 }
