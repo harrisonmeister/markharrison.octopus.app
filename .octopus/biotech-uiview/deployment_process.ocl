@@ -36,37 +36,6 @@ step "deployment-approval" {
     }
 }
 
-step "deploy-biotech-web" {
-    name = "Deploy biotech-web"
-    properties = {
-        Octopus.Action.TargetRoles = "biotech-web"
-    }
-
-    action {
-        action_type = "Octopus.TentaclePackage"
-        is_disabled = true
-        properties = {
-            Octopus.Action.EnabledFeatures = ",Octopus.Features.ConfigurationTransforms,Octopus.Features.ConfigurationVariables"
-            Octopus.Action.Package.AutomaticallyRunConfigurationTransformationFiles = "False"
-            Octopus.Action.Package.AutomaticallyUpdateAppSettingsAndConnectionStrings = "False"
-            Octopus.Action.Package.DownloadOnTentacle = "False"
-            Octopus.Action.Package.FeedId = "octopus-server-built-in"
-            Octopus.Action.Package.PackageId = "biotech-webapp"
-            Octopus.Action.RunOnServer = "false"
-        }
-        worker_pool_variable = ""
-
-        packages {
-            acquisition_location = "Server"
-            feed = "octopus-server-built-in"
-            package_id = "biotech-webapp"
-            properties = {
-                SelectionMode = "immediate"
-            }
-        }
-    }
-}
-
 step "notify-deployment-status" {
     condition = "Always"
     name = "Notify deployment status"
@@ -90,8 +59,8 @@ step "notify-deployment-status" {
     }
 }
 
-process_template "run-a-process-template" {
-    name = "Run a Process Template"
+process_template "deploy-biotech-web" {
+    name = "Deploy biotech web"
     process_template_slug = "deploy-package-process-with-approval"
     version_mask = "1.X"
 
