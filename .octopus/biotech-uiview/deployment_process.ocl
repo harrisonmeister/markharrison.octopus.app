@@ -2,6 +2,7 @@ step "notify-deployment-start" {
     name = "Notify deployment start"
 
     action {
+        is_disabled = true
         properties = {
             Octopus.Action.AutoRetry.MaximumCount = "3"
             Octopus.Action.AutoRetry.MinimumBackoff = "15"
@@ -25,6 +26,7 @@ step "deployment-approval" {
     action "deployment-approval-in-staging" {
         action_type = "Octopus.Manual"
         environments = ["staging"]
+        is_disabled = true
         properties = {
             Octopus.Action.Manual.BlockConcurrentDeployments = "False"
             Octopus.Action.Manual.Instructions = "Is this deployment to #{Octopus.Environment.Name} approved to be deployed?"
@@ -42,6 +44,7 @@ step "deploy-biotech-web" {
 
     action {
         action_type = "Octopus.TentaclePackage"
+        is_disabled = true
         properties = {
             Octopus.Action.EnabledFeatures = ",Octopus.Features.ConfigurationTransforms,Octopus.Features.ConfigurationVariables"
             Octopus.Action.Package.AutomaticallyRunConfigurationTransformationFiles = "False"
@@ -69,6 +72,7 @@ step "notify-deployment-status" {
     name = "Notify deployment status"
 
     action {
+        is_disabled = true
         properties = {
             Octopus.Action.AutoRetry.MaximumCount = "3"
             Octopus.Action.AutoRetry.MinimumBackoff = "15"
@@ -83,5 +87,32 @@ step "notify-deployment-status" {
             ssn_Username = "Octopus Deploy"
         }
         worker_pool = "hosted-ubuntu"
+    }
+}
+
+process_template "run-a-process-template" {
+    name = "Run a Process Template"
+    process_template_slug = "deploy-package-process-with-approval"
+    version_mask = "1.X"
+
+    package_parameter "PH.PackageDeploy.Package" {
+        feed = "octopus-server-built-in"
+        package_id = "biotech-webapp"
+    }
+
+    parameter "PH.PackageDeploy.WorkerPool" {
+        value = "WorkerPools-431"
+    }
+
+    parameter "PH.PackageDeploy.ApprovalEnvironments" {
+        value = "Environments-422"
+    }
+
+    parameter "PH.PackageDeploy.TargetTags" {
+        value = "biotech-web"
+    }
+
+    parameter "PH.PackageDeploy.Slack.Webhook" {
+        value = "#{Notification.Slack.Webhook}"
     }
 }
