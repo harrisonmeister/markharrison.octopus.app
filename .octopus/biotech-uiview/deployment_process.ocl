@@ -1,3 +1,18 @@
+step "run-a-script" {
+    name = "Run a Script"
+
+    action {
+        action_type = "Octopus.Script"
+        properties = {
+            Octopus.Action.Script.ScriptBody = "Write-Output \"Hello world\""
+            Octopus.Action.Script.ScriptSource = "Inline"
+            Octopus.Action.Script.Syntax = "PowerShell"
+            OctopusUseBundledTooling = "False"
+        }
+        worker_pool = "hosted-windows"
+    }
+}
+
 process_template "deploy-biotech-web" {
     name = "Deploy biotech web"
     process_template_slug = "deploy-package-process-with-approval"
