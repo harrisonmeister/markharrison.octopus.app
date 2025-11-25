@@ -1,7 +1,7 @@
 step "run-a-script" {
-    name = "Run a Script"
+    name = "Hello world example"
 
-    action {
+    action "hello-world-example" {
         action_type = "Octopus.Script"
         properties = {
             Octopus.Action.Script.ScriptBody = "Write-Output \"Hello world\""
