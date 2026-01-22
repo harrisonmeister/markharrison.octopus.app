@@ -1,7 +1,7 @@
 process_template "deploy-biotech-web" {
     name = "Deploy biotech web"
     process_template_slug = "deploy-package-process-with-approval"
-    version_mask = "3.X"
+    version_mask = "4.X"
 
     package_parameter "PH.PackageDeploy.Package" {
         feed = "octopus-server-built-in"
@@ -24,11 +24,7 @@ process_template "deploy-biotech-web" {
         value = "#{Notification.Slack.Webhook}"
     }
 
-    parameter "PH.NewValue" {
-        value = "NewValue"
-    }
-
-    parameter "PH.NewValue2" {
-        value = "New"
+    parameter "PH.PackageDeploy.Title" {
+        value = "Mr"
     }
 }
